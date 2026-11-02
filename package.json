@@ -9,6 +9,7 @@
     "serve": "vite preview",
     "test": "vitest",
     "lint": "oxlint src",
+    "lint:fix": "oxlint src --fix",
     "prepare": "husky",
     "format": "prettier --write ."
   },
@@ -38,6 +39,7 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,vue,svelte}": [
+      "prettier --write",
       "oxlint"
     ]
   }
