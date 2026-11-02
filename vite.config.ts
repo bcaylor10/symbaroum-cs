@@ -2,6 +2,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { fileRoutes } from 'filesystem-routing/vite';
 import { defineConfig } from 'vitest/config';
 import solid from '@solidjs/vite-plugin';
+import { fileURLToPath } from 'node:url';
 
 export default defineConfig({
   // Turnkey client mode: no index.html and no mount file — the plugin generates
@@ -28,5 +29,10 @@ export default defineConfig({
   build: {
     target: 'esnext',
     assetsInlineLimit: 0,
+  },
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
   },
 });

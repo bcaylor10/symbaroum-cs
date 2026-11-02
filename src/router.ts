@@ -1,12 +1,15 @@
-import { pageRoutes } from 'virtual:file-routes';
-import { createRouter, intentPreload } from '@solidjs/router';
-import { fileRoutes } from '@solidjs/router/fs';
+import { lazy } from 'solid-js';
+import { createRouter } from '@solidjs/router';
 
-// Link preloading is opt-in. intentPreload() warms a link's code and runs
-// its preload when the pointer rests on it (or on focus/touch).
 export const Router = createRouter({
-  routes: fileRoutes(pageRoutes),
-  preloadLinks: intentPreload(),
+  routes: [
+    { path: '/', component: lazy(() => import('./pages/Home')) },
+    {
+      path: '/character-sheet',
+      component: lazy(() => import('./pages/CharSheet')),
+    },
+    { path: '*404', component: lazy(() => import('./pages/NotFound')) },
+  ],
 });
 
 export const { paths } = Router;
