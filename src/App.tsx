@@ -18,7 +18,7 @@ export default function App() {
           <Loading
             fallback={
               <main class={cn('flex items-center justify-center', baseClasses)}>
-                <span class={'loading loading-ball loading-xl'}></span>
+                <span class={'loading loading-ball loading-xl'} />
               </main>
             }
           >

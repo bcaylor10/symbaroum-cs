@@ -2,6 +2,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { fileRoutes } from 'filesystem-routing/vite';
 import { defineConfig } from 'vitest/config';
 import solid from '@solidjs/vite-plugin';
+import oxlintPlugin from 'vite-plugin-oxlint';
 import { fileURLToPath } from 'node:url';
 
 export default defineConfig({
@@ -14,6 +15,9 @@ export default defineConfig({
     solid({ start: true, extensions: ['.jsx', '.tsx'], diagnostics: true }), // add `ssr: true` for streaming SSR
     fileRoutes({ types: true }),
     tailwindcss(),
+    oxlintPlugin({
+      failOnError: true, // Forces bun dev to throw an error and block compilation
+    }),
   ],
   server: {
     port: 3000,

@@ -8,5 +8,6 @@ export default defineConfig({
   rules: {
     ...solidV2.rules,
     'solid/style-prop': 'off',
+    'solid/no-react-specific-props': 'error',
   },
 });
