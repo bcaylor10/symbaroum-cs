@@ -1,12 +1,13 @@
 import { Loading } from 'solid-js';
 
 import { Router } from './router';
-import { cn } from '@/libs/cn';
+import { cn } from '@/lib/utils';
 import { Header } from '@/components/Header';
 
 import './styles/app.css';
 
-const baseClasses = 'max-w-[100rem] px-4 py-6 flex justify-start';
+const baseClasses = 'py-6 flex justify-start';
+// px-4
 
 export default function App() {
   return (

@@ -64,14 +64,16 @@ export const ThemeSwitcher = () => {
 
   return (
     <>
-      <button
-        class="btn btn-ghost cursor-pointer"
-        popovertarget="theme-popover"
-        style="anchor-name:--anchor-popover"
-      >
-        <FiSliders />
-        <span class={'sr-only'}>Change Theme</span>
-      </button>
+      <div class={'tooltip tooltip-left'} data-tip={'Change Theme'}>
+        <button
+          class="btn btn-ghost cursor-pointer"
+          popovertarget="theme-popover"
+          style="anchor-name:--anchor-popover"
+          aria-label="Change Theme"
+        >
+          <FiSliders />
+        </button>
+      </div>
       <ul
         class="dropdown dropdown-end menu w-52 bg-base-200 text-base-content rounded-box h-122 max-h-[calc(100vh-8.6rem)] overflow-y-auto border-(length:--border) border-white/5 shadow-2xl outline-(length:--border) outline-black/5 mt-6"
         popover
@@ -86,6 +88,7 @@ export const ThemeSwitcher = () => {
                 class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-left capitalize hover:bg-base-300"
                 data-set-theme={theme}
                 onClick={() => setTheme(theme)}
+                aria-label={`Change Theme to ${theme}`}
               >
                 {theme}
                 {currentTheme() === theme && <span>✓</span>}

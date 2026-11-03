@@ -1,10 +1,10 @@
 import { paths } from '@/router';
-import { ThemeSwitcher } from '@/components/ThemeSwitcher';
+import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher';
 
 export const Header = () => {
   return (
-    <header class="px-4 py-2 navbar bg-base-100 shadow-sm flex justify-between">
-      <a class="btn btn-ghost text-xl">
+    <header class="sticky top-0 z-100 px-4 py-2 navbar bg-base-100 shadow-sm secondary flex justify-between">
+      <a href="/" class="text-xl">
         <h1>SymSheet</h1>
       </a>
       <nav class="flex-none">

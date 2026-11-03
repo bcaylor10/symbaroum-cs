@@ -1,11 +1,18 @@
 import { CharacterInfo } from '@/components/CharacterInfo';
+import { Attributes } from '@/components/attributes/Attributes';
+import { Container } from '@/components/layout/Container';
 
 export default function CharSheet() {
   return (
-    <div class={'flex flex-row'}>
-      <div class={'w-[40%]'}>
-        <CharacterInfo />
+    <Container class={'px-4 max-w-full'}>
+      <div class={'flex flex-row gap-4'}>
+        <div class={'w-[40%]'}>
+          <CharacterInfo />
+        </div>
+        <div class={'w-full'}>
+          <Attributes />
+        </div>
       </div>
-    </div>
+    </Container>
   );
 }
