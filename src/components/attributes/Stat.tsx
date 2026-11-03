@@ -22,7 +22,7 @@ export const Stat = (props: StatProps) => {
   return (
     <div
       class={
-        'flex flex-col gap-2 items-center justify-center rounded-md border border-primary p-4'
+        'flex flex-col gap-2 items-center justify-center rounded-md bg-base-300 border border-base-content/10 p-4'
       }
     >
       <h4>{props.name}</h4>

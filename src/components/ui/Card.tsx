@@ -8,12 +8,7 @@ interface CardProps extends ComponentProps<'div'> {
 
 export const Card = (props: CardProps) => {
   return (
-    <div
-      class={cn(
-        'card bg-base-100 shadow-sm border border-primary p-4',
-        props.class
-      )}
-    >
+    <div class={cn('card bg-base-300 shadow-sm border p-4', props.class)}>
       {props.cardHeader}
       <div class="card-body px-0">{props.children}</div>
     </div>
