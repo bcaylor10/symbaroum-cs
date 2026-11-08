@@ -5,6 +5,8 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { TextArea } from '@/components/ui/TextArea';
 import { Card } from '@/components/ui/Card';
+import { useCharacter } from '@/contexts/CharacterContext';
+import { Details } from '@/interfaces/character.interface';
 
 const races = [
   'Human - Ambrian',
@@ -24,13 +26,7 @@ const archetypes = ['Warrior', 'Mystic', 'Rogue'].sort((a, b) =>
 );
 
 export const CharacterInfo = () => {
-  const [isEditing, setIsEditing] = createSignal<boolean>(false);
-
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      setIsEditing(false);
-    }
-  };
+  const [character, setCharacter] = useCharacter();
 
   const CardHeader = (
     <figure class={'relative overflow-visible'}>
@@ -56,67 +52,74 @@ export const CharacterInfo = () => {
     </figure>
   );
 
+  const updateCharacterData = <K extends keyof Details>(
+    field: K,
+    value: Details[K]
+  ) => {
+    setCharacter((c) => {
+      c.details[field] = value;
+    });
+  };
+
   return (
     <Card cardHeader={CardHeader}>
       <form class={'grid grid-cols-1 gap-4'}>
-        <Show
-          when={!isEditing()}
-          fallback={
-            <div class={'flex flex-col gap-4'}>
-              <Input name={'character_name'} onKeyDown={handleKeyDown} />
-              <div class={'flex justify-end gap-2'}>
-                <button
-                  class={'btn btn-primary'}
-                  aria-label="Save"
-                  onClick={() => setIsEditing((prev) => !prev)}
-                >
-                  Save
-                </button>
-                <button
-                  class={'btn btn-error'}
-                  aria-label="Cancel"
-                  onClick={() => setIsEditing((prev) => !prev)}
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          }
-        >
-          <h2
-            class={
-              'card-title text-base-content px-0 text-left text-2xl mb-4 flex items-center gap-2'
-            }
-          >
-            Character Name{' '}
-            <div class={'tooltip'} data-tip={'Edit Name'}>
-              <button
-                type={'button'}
-                onClick={() => setIsEditing((prev) => !prev)}
-                class={'btn btn-soft btn-circle btn-sm'}
-                aria-label="Edit Name"
-              >
-                <FiEdit />
-              </button>
-            </div>
-          </h2>
-        </Show>
-
+        <Input
+          name={'character_name'}
+          value={character.details.name}
+          onBlur={(e) => updateCharacterData('name', e.target.value)}
+        />
         <div class={'grid grid-cols-2 gap-4'}>
-          <Select name={'race'} options={races} />
-          <Select name={'archetype'} options={archetypes} />
+          <Select
+            name={'race'}
+            options={races}
+            value={character.details.race}
+            onChange={(e) => updateCharacterData('race', e.target.value)}
+          />
+          <Select
+            name={'archetype'}
+            options={archetypes}
+            value={character.details.archetype}
+            onChange={(e) => updateCharacterData('archetype', e.target.value)}
+          />
         </div>
-        <Input name={'occupation'} />
-        <TextArea name={'shadow'} />
+        <Input
+          name={'occupation'}
+          value={character.details.occupation}
+          onChange={(e) => updateCharacterData('occupation', e.target.value)}
+        />
+        <Input
+          name={'shadow'}
+          value={character.details.shadow}
+          onChange={(e) => updateCharacterData('shadow', e.target.value)}
+        />
         <div class={'grid grid-cols-2 gap-4'}>
-          <Input name={'total_xp'} label={'Total XP'} type={'number'} min={1} />
+          <Input
+            name={'total_xp'}
+            label={'Total XP'}
+            type={'number'}
+            min={1}
+            value={character.details.totalXp}
+            onChange={(e) =>
+              updateCharacterData('totalXp', Number(e.target.value))
+            }
+          />
           <Input
             name={'unspent_xp'}
             label={'Unspent XP'}
             type={'number'}
             min={0}
+            value={character.details.unspentXp}
+            onChange={(e) =>
+              updateCharacterData('unspentXp', Number(e.target.value))
+            }
           />
         </div>
+        <TextArea
+          name={'bio'}
+          value={character.details.bio}
+          onChange={(e) => updateCharacterData('bio', e.target.value)}
+        />
       </form>
       <dialog id="portrait-dialog" class="modal">
         <div class="modal-box">

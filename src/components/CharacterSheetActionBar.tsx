@@ -47,7 +47,10 @@ const buttons = [
 export const CharacterSheetActionBar = () => {
   const [character] = useCharacter();
 
-  const name = () => !isEmpty(character().details.name) || 'Character Name';
+  const name = () =>
+    !isEmpty(character.details.name)
+      ? character.details.name
+      : 'Character Name';
 
   return (
     <Card class="w-full" bodyClass={'p-0'}>

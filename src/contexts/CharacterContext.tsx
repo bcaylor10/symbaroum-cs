@@ -1,11 +1,11 @@
 import {
   createContext,
-  createSignal,
   createEffect,
   ParentProps,
-  Accessor,
-  Setter,
   useContext,
+  onSettled,
+  createStore,
+  StoreSetter,
 } from 'solid-js';
 
 import {
@@ -19,12 +19,12 @@ import {
   Vitals,
 } from '@/interfaces/character.interface';
 
-type CharacterContextTuple = [
-  character: Accessor<Character>,
-  setCharacter: Setter<Character>,
+type CharacterContextType = [
+  character: Character,
+  setCharacter: StoreSetter<Character>,
 ];
 
-const CharacterContext = createContext<CharacterContextTuple>();
+const CharacterContext = createContext<CharacterContextType>();
 
 export const defaultAttributes: Attributes = {
   accurate: 5,
@@ -67,17 +67,14 @@ const defaultValue: Character = {
 };
 
 export const CharacterProvider = (props: ParentProps) => {
-  const [character, setCharacter] = createSignal<Character>(() => {
-    const saved = localStorage.getItem('character');
-    return saved ? JSON.parse(saved) : defaultValue; // default fallback
-  });
+  const [character, setCharacter] = createStore<Character>(
+    JSON.parse(localStorage.getItem('character') ?? 'null') ?? defaultValue
+  );
 
   createEffect(
-    () => character(),
-    (data) => {
-      if (data) {
-        localStorage.setItem('character', JSON.stringify(data));
-      }
+    () => JSON.stringify(character),
+    (saved) => {
+      localStorage.setItem('character', saved);
     }
   );
 

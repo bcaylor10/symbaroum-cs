@@ -17,7 +17,7 @@ export const Stat = (props: StatProps) => {
     maxValue = 15,
     attrName = props.name;
 
-  const value = () => character()?.attributes[props.name] ?? minValue;
+  const value = () => character.attributes[props.name] ?? minValue;
 
   const handleAttributeUpdate = (updatedValue: number) => {
     let currentValue = value() + updatedValue;
@@ -30,13 +30,9 @@ export const Stat = (props: StatProps) => {
       currentValue = maxValue;
     }
 
-    setCharacter((prev) => ({
-      ...prev,
-      attributes: {
-        ...prev.attributes,
-        [props.name]: currentValue,
-      },
-    }));
+    setCharacter((c) => {
+      c.attributes[attrName] = currentValue;
+    });
   };
 
   return (

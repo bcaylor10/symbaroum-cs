@@ -13,15 +13,13 @@ export const Attributes = () => {
   const attributes = Object.values(AttributeNames);
 
   const currentAttributePoints = (): number => {
-    const attrs = Object.values(character().attributes);
+    const attrs = Object.values(character.attributes);
     return attrs.reduce((acc: number, attr: number) => acc + attr, 0);
   };
 
-  const resetAttributePoints = () =>
-    setCharacter((prev) => ({
-      ...prev,
-      attributes: defaultAttributes,
-    }));
+  const resetAttributePoints = () => {
+    setCharacter('attributes', defaultAttributes);
+  };
 
   const CardHeader = (
     <div class="flex flex-row justify-between items-center">
@@ -44,15 +42,6 @@ export const Attributes = () => {
         }
       >
         <div class={'flex gap-4'}>
-          <div class={'tooltip'} data-tip={'Stop Editing'}>
-            <button
-              class={'btn btn-circle btn-ghost btn-primary'}
-              aria-label="Stop Editing"
-              onClick={() => setEditMode(false)}
-            >
-              <FiX />
-            </button>
-          </div>
           <div class={'tooltip'} data-tip={'Reset Attributes'}>
             <button
               class={'btn btn-circle btn-ghost btn-secondary'}
@@ -62,6 +51,15 @@ export const Attributes = () => {
               }
             >
               <FiRotateCcw />
+            </button>
+          </div>
+          <div class={'tooltip'} data-tip={'Stop Editing'}>
+            <button
+              class={'btn btn-circle btn-ghost btn-primary'}
+              aria-label="Stop Editing"
+              onClick={() => setEditMode(false)}
+            >
+              <FiX />
             </button>
           </div>
         </div>
