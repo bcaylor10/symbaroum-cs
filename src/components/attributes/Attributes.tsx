@@ -34,7 +34,7 @@ export const Attributes = () => {
         fallback={
           <div class={'tooltip'} data-tip={'Edit Attributes'}>
             <button
-              class={'btn btn-circle btn-primary'}
+              class={'btn btn-circle btn-ghost btn-primary'}
               aria-label="Edit Attribute Points"
               onClick={() => setEditMode(true)}
             >
@@ -46,7 +46,7 @@ export const Attributes = () => {
         <div class={'flex gap-4'}>
           <div class={'tooltip'} data-tip={'Stop Editing'}>
             <button
-              class={'btn btn-circle btn-primary'}
+              class={'btn btn-circle btn-ghost btn-primary'}
               aria-label="Stop Editing"
               onClick={() => setEditMode(false)}
             >
@@ -55,7 +55,7 @@ export const Attributes = () => {
           </div>
           <div class={'tooltip'} data-tip={'Reset Attributes'}>
             <button
-              class={'btn btn-circle btn-secondary'}
+              class={'btn btn-circle btn-ghost btn-secondary'}
               aria-label="Reset Attribute Points"
               onClick={() =>
                 document.getElementById('reset-attributes-dialog').showModal()

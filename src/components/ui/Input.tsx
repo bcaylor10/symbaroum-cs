@@ -1,6 +1,6 @@
 import type { ComponentProps } from '@solidjs/web';
 import { omit } from 'solid-js';
-import { startCase } from 'lodash';
+import { startCase } from 'lodash-es';
 import { SetRequired } from 'type-fest';
 
 import { cn } from '@/lib/utils';
