@@ -36,6 +36,9 @@
     "vitest": "^5.0.5"
   },
   "dependencies": {
+    "@dnd-kit/dom": "^0.5.3",
+    "@dnd-kit/solid": "^0.5.3",
+    "@snapgridjs/solid": "^0.13.0",
     "@solidjs/meta": "^1.0.0-next.2",
     "@solidjs/router": "^2.0.0-next.43",
     "@solidjs/web": "^2.0.0-rc.20",
