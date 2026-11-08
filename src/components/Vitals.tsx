@@ -93,7 +93,7 @@ export const Vitals = () => {
                 <AiFillCaretUp />
               </span>
               <progress
-                class="progress progress-primary progress-animated w-full"
+                class="progress w-full"
                 value={character.vitals.toughness}
                 max={maxToughness()}
               ></progress>
@@ -105,12 +105,7 @@ export const Vitals = () => {
                 </span>
                 Pain threshold: damage from one hit
               </p>
-              <p
-                class={cn(
-                  'flex-none badge badge-sm badge-outline',
-                  toughnessBadge().class
-                )}
-              >
+              <p class={cn('flex-none badge badge-sm', toughnessBadge().class)}>
                 {toughnessBadge().label}
               </p>
             </div>
@@ -156,7 +151,7 @@ export const Vitals = () => {
                 <AiFillCaretUp />
               </span>
               <progress
-                class="progress progress-primary progress-animated w-full"
+                class="progress w-full"
                 value={currentCorruption()}
                 max={maxCorruption()}
               ></progress>
@@ -169,10 +164,7 @@ export const Vitals = () => {
                 Corruption threshold (temporary)
               </p>
               <p
-                class={cn(
-                  'flex-none badge badge-sm badge-outline',
-                  corruptionBadge().class
-                )}
+                class={cn('flex-none badge badge-sm', corruptionBadge().class)}
               >
                 {corruptionBadge().label}
               </p>
