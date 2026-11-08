@@ -1,5 +1,4 @@
 import { Container } from '@/components/layout/Container';
-import Forest from '@/assets/img/forest.svg';
 
 export default function NotFound() {
   return (
