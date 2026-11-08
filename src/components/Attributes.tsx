@@ -2,7 +2,7 @@ import { createSignal, For, Show } from 'solid-js';
 import { FiRotateCcw, FiEdit, FiX } from 'solid-icons/fi';
 
 import { Card } from '@/components/ui/Card';
-import { Stat } from '@/components/attributes/Stat';
+import { Counter } from '@/components/ui/Counter';
 import { AttributeNames } from '@/interfaces/character.interface';
 import { useCharacter, defaultAttributes } from '@/contexts/CharacterContext';
 
@@ -18,7 +18,9 @@ export const Attributes = () => {
   };
 
   const resetAttributePoints = () => {
-    setCharacter('attributes', defaultAttributes);
+    setCharacter((c) => {
+      c.attributes = defaultAttributes;
+    });
   };
 
   const CardHeader = (
@@ -69,13 +71,27 @@ export const Attributes = () => {
 
   return (
     <Card cardHeader={CardHeader}>
+      <h3 class={'text-md mb-3'}>
+        Remaining Attribute Points:{' '}
+        <span class={'font-bold'}>
+          {maxAttributePoints - currentAttributePoints()}
+        </span>
+      </h3>
       <div class={'grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4'}>
         <For each={attributes} keyed={true}>
           {(attribute) => (
-            <Stat
+            <Counter
               name={attribute}
+              minValue={5}
+              maxValue={15}
               editMode={editMode()}
               enabled={currentAttributePoints() < maxAttributePoints}
+              getValue={() => character.attributes[attribute]}
+              setValue={(value) =>
+                setCharacter((c) => {
+                  c.attributes[attribute] = value;
+                })
+              }
             />
           )}
         </For>

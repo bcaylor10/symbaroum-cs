@@ -53,7 +53,6 @@ const defaultValue: Character = {
     toughness: 0,
     temporaryCorruption: 0,
     permanentCorruption: 0,
-    maxToughness: 0,
     defense: 0,
     painThreshold: 0,
     corruptionThreshold: 0,

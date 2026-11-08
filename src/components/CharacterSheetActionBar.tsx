@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { isEmpty } from 'lodash-es';
+import { isEmpty, startCase } from 'lodash-es';
 import {
   FiBookOpen,
   FiFileText,
@@ -47,10 +47,23 @@ const buttons = [
 export const CharacterSheetActionBar = () => {
   const [character] = useCharacter();
 
-  const name = () =>
-    !isEmpty(character.details.name)
-      ? character.details.name
-      : 'Character Name';
+  const name = () => {
+    let name = 'Character Name';
+
+    if (!isEmpty(character.details.name)) {
+      name = character.details.name;
+    }
+
+    if (!isEmpty(character.details.race)) {
+      name = `${name} - ${startCase(character.details.race)}`;
+    }
+
+    if (!isEmpty(character.details.archetype)) {
+      name = `${name} (${startCase(character.details.archetype)})`;
+    }
+
+    return name;
+  };
 
   return (
     <Card class="w-full" bodyClass={'p-0'}>

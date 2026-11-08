@@ -25,7 +25,6 @@ export interface Vitals {
   toughness: number;
   temporaryCorruption: number;
   permanentCorruption: number;
-  maxToughness: number;
   defense: number;
   painThreshold: number;
   corruptionThreshold: number;

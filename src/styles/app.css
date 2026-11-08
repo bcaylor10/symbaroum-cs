@@ -30,4 +30,15 @@
 .rune   { animation: rune-pulse 3.6s ease-in-out infinite; }
 .portal { animation: portal-breathe 4s ease-in-out infinite; }
 
-
+@keyframes progress-animated {
+  0%   { inline-size: 20%; }
+  20%  { inline-size: 90%; }
+  40%  { inline-size: 45%; }
+  60%  { inline-size: 95%; }
+  80%  { inline-size: 15%; }
+  100% { inline-size: 20%; }
+}
+.demo-before::-webkit-progress-value { animation: progress-animated 5s steps(1, jump-start) infinite; }
+.demo-after::-webkit-progress-value  { animation: progress-animated 5s ease-in-out infinite; }
+.demo-before::-moz-progress-bar { animation: progress-animated 5s steps(1, jump-start) infinite; }
+.demo-after::-moz-progress-bar  { animation: progress-animated 5s ease-in-out infinite; }
