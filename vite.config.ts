@@ -4,6 +4,7 @@ import { defineConfig } from 'vitest/config';
 import solid from '@solidjs/vite-plugin';
 import oxlintPlugin from 'vite-plugin-oxlint';
 import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 
 export default defineConfig({
   // Turnkey client mode: no index.html and no mount file — the plugin generates
@@ -35,8 +36,16 @@ export default defineConfig({
     assetsInlineLimit: 0,
   },
   resolve: {
+    conditions: ['solid', 'development', 'browser', 'import', 'module'],
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+  optimizeDeps: {
+    // Do NOT exclude or alias @snapgridjs/solid; let Vite optimize it normally
+    include: ['@snapgridjs/solid'],
+    esbuildOptions: {
+      target: 'esnext',
     },
   },
 });

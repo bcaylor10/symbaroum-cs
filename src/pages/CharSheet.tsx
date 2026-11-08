@@ -4,7 +4,7 @@ import { Container } from '@/components/layout/Container';
 
 export default function CharSheet() {
   return (
-    <Container class={'px-4 max-w-full'}>
+    <Container class={'px-10 max-w-full'}>
       <div class={'flex flex-row gap-4'}>
         <div class={'w-[40%]'}>
           <CharacterInfo />
